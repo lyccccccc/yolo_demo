@@ -107,5 +107,6 @@ SpringApplication 则是用于从main方法启动Spring应用的类。
 
 最后测试的时候遇到了问题：
 1.用postman测试新增方法时，后台接收到的参数是null
-这里需要注意的是用"method = RequestMethod.POST"这种Post方式请求时，参数要加上@RequestBody这个注解，否则就拿不到json的数据
-用"method = RequestMethod.GET"这种GET方式请求时，参数要加上@RequestParam这个注解
+当用JSON提交方式： Content-Type:application/json时,
+后端：对象接收：除了：get请求，不需要增加@ReqeustBody注解，其它的都需要。
+参数接收：使用：@RequestParam 或者不用。
