@@ -39,11 +39,17 @@ public interface UserService {
      */
     User findUserByName(String userName);
 
-
+    User findUserById(Integer id);
 
     /**
      * 查询所有
      * @return
      */
     List<User> findAll();
+
+    /**
+     * 查询课程所有学生
+     * @return
+     */
+    List<User> findUserByClassId(Integer id);
 }

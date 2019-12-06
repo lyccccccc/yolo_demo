@@ -4,6 +4,7 @@ package com.zt.entity;
 import lombok.Data;
 
 import javax.persistence.Id;
+import java.util.List;
 
 @Data
 public class User {
@@ -15,6 +16,7 @@ public class User {
 
   private String name;
   private Integer age;
+  private Integer classId;
 
 
 }

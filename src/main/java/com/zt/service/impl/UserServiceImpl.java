@@ -83,6 +83,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findUserByName(userName);
     }
 
+    @Override
+    public User findUserById(Integer id){
+        return userDao.findUserById(id);
+    }
+
     /**
      * 查询所有
      *
@@ -91,5 +96,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userDao.findAll();
+    }
+
+    @Override
+    public List<User> findUserByClassId(Integer id) {
+        System.out.println(userDao.findUserByClassId(id));
+        return userDao.findUserByClassId(id);
     }
 }

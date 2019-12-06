@@ -1,4 +1,11 @@
 package com.zt.service;
 
-public class ClassService {
+import com.zt.entity.Class;
+
+import java.util.List;
+
+public interface ClassService {
+    Class getClassById(Integer id);
+
+    List<Class> findAll();
 }

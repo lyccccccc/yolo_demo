@@ -2,6 +2,7 @@ package com.zt.dao;
 
 import com.zt.entity.User;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
@@ -17,13 +18,13 @@ public interface UserDao {
     /**
      * 用户数据新增
      */
-    @Insert("insert into t_user(id,name,age) values (#{id},#{name},#{age})")
+    @Insert("insert into t_user(id,name,age,classId) values (#{id},#{name},#{age},#{classId})")
     void addUser(User user);
 
     /**
      * 用户数据修改
      */
-    @Update("update t_user set name=#{name},age=#{age} where id=#{id}")
+    @Update("update t_user set name=#{name},age=#{age},classId=#{classId} where id=#{id}")
     void updateUser(User user);
 
     /**
@@ -35,12 +36,31 @@ public interface UserDao {
     /**
      * 根据用户名称查询用户数据
      */
-    @Select("select id,name,age from t_user where name = #{name}")
+    @Select("select id,name,age,classId from t_user where name = #{name}")
     User findUserByName(@Param("name") String userName);
+
+    /**
+     * 根据用户名称查询用户数据
+     */
+    @Select("select id,name,age,classId from t_user where id = #{id}")
+    User findUserById(@Param("id") Integer id);
 
     /**
      * 查询所有
      */
-    @Select("select id,name,age from t_user")
+    @Select("select id,name,age,classId from t_user")
     List<User> findAll();
+
+    /**
+     * 查找某个课程的学术
+     */
+    @Select("select * from t_user where classId in(select classId from class where classId = #{id})")
+//    @Results({
+//            @Result(id =true,property = "id",column = "id"),
+//            @Result(property = "name",column = "name"),
+//            @Result(property = "age",column = "age"),
+//            @Result(property = "iClass",column = "classId",many = @Many(select = "com.zt.dao.ClassDao.findAll"
+//            ,fetchType = FetchType.LAZY))
+//    })
+    List<User> findUserByClassId(Integer id);
 }
